@@ -21,17 +21,30 @@ class Solution:
         - When the count is more than single digit then split the count as separate characters
         '''
 
+        #Approach 2
+        write,read=0,0
+        while read<len(chars):
+            ch,start=chars[read],read
+            while read<len(chars) and chars[read]==ch:
+                read+=1
+            chars[write]=ch;write+=1
+            if (read-start)>1:
+                for d in str(read-start):
+                    chars[write]=d;write+=1
+        return write 
+
+
         #Approch 1
         #Use 2 pointers, 1 for start and 1 for end of group and string to hold the chars and counts
-        s,i="",0
-        while i<len(chars):
-            j=i
-            while j<len(chars) and chars[j]==chars[i]:
-                j+=1
-            s+=chars[i]+(str(j-i) if j-i>1 else "")
-            i=j
-        chars[:len(s)]=s
-        return len(s)
+        # s,i="",0
+        # while i<len(chars):
+        #     j=i
+        #     while j<len(chars) and chars[j]==chars[i]:
+        #         j+=1
+        #     s+=chars[i]+(str(j-i) if j-i>1 else "")
+        #     i=j
+        # chars[:len(s)]=s
+        # return len(s)
 
 
 
